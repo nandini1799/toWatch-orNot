@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DV project</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            height: 100vh;
+        }
+
+        .quadrant {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            border: 2px solid #333;
+        }
+
+        .quadrant:nth-child(1) {
+            background-color: #ffffff;
+        }
+
+        .quadrant:nth-child(2) {
+            background-color: #ffffff;
+        }
+
+        .quadrant:nth-child(3) {
+            background-color: #ffffff;
+        }
+
+        .quadrant:nth-child(4) {
+            background-color: #ffffff;
+        }
+
+        /* Style for the SVG elements */
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        svg rect {
+            fill: none;
+            stroke: #333;
+            stroke-width: 2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DV project</h1>
+    </header>
+    <div class="container">
+        <div class="quadrant">
+            <svg>
+                <!-- Quadrant 1 SVG content -->
+                <rect x="10" y="10" width="50%" height="50%" />
+            </svg>
+        </div>
+        <div class="quadrant">
+            <svg>
+                <!-- Quadrant 2 SVG content -->
+                <rect x="10" y="10" width="50%" height="50%" />
+            </svg>
+        </div>
+        <div class="quadrant">
+            <svg>
+                <!-- Quadrant 3 SVG content -->
+                <rect x="10" y="10" width="50%" height="50%" />
+            </svg>
+        </div>
+        <div class="quadrant">
+            <svg>
+                <!-- Quadrant 4 SVG content -->
+                <rect x="10" y="10" width="50%" height="50%" />
+            </svg>
+        </div>
+    </div>
+</body>
+</html>
