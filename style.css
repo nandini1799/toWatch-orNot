@@ -1,0 +1,31 @@
+/* h1{
+    color: rgb(135, 69, 197);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+} */
+
+.visualizationContainer{
+
+    width: 98%;
+    height: 670px;
+    background-color: #ffffff;
+    border-color: rgba(117, 220, 136, 0.307);
+    border-style: dashed;
+    box-sizing: border-box;
+    border-radius: 17px;
+    margin: 5% auto auto auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.visualizations{
+
+    width: 40%;
+    height: 47%;
+    border-color: rgba(111, 146, 117, 0.362);
+    border-style: dashed;
+    box-sizing: border-box;
+    border-radius: 17px;
+}
