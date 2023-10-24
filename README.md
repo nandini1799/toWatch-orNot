@@ -1,3 +1,3 @@
 # toWatch-orNot
 
-DV project.html is the intial html file (a skeleton)
+index.html is the initial HTML file (a skeleton)
