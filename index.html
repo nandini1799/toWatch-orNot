@@ -5,34 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://d3js.org/d3.v4.js"></script>
-    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"></script>
+    <title>Reel Insider</title>
     
 </head>
 <body >
-    
-    <div class="heading">Reel Insider</div>
-    
+     
+    <script src="pieChart.js"></script>
+    <div class="heading">REEL INSIDER : Visualizations Dashboard</div>
+    <!-- <script src="stackedbar.js"></script> -->
+    <!-- <script src="genre_stats.js"></script> -->
     <div class="visualizationContainer">
 
-        <div class="visualizations">
-                <svg id="doughnut-chart"></svg>
+        <div class="visualizations"> 
+            <!-- <svg id="chart"></svg> -->
         </div>
 
         <div class="visualizations">
-                <svg></svg>
+                <!-- <svg id="gbarchart"></svg> -->
+        </div>
+
+        <div class="visualizations">
+            <svg id="pieChart">
+                <text class="description" x="80%" y="95%">This is the pie chart description.</text>
+            </svg>
+            <svg id="legend"></svg>
         </div>
 
         <div class="visualizations">
             <svg></svg>
         </div>
 
-        <div class="visualizations">
-            <svg></svg>
-        </div>
-
-        
+                
     </div>
-    <!-- <h1> Testing this page </h1> -->
 
 </body>
 </html>
