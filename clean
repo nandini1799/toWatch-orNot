@@ -1,0 +1,36 @@
+# Import the csv and json modules
+import csv
+import json
+
+# Open the csv file and create a csv reader object
+csv_file = open('data.csv', 'r')
+csv_reader = csv.DictReader(csv_file)
+
+# Create an empty list to store the selected data
+data_list = []
+
+# Loop through each row in the csv file
+for row in csv_reader:
+    # Create a dictionary to store the selected attributes
+    data_dict = {}
+    # Add the attributes that you want to the dictionary
+    # For example, if you want to select Primary Genre, Budget Recovered, Budget, and Revenue, you can do this:
+    data_dict['Primary Genre'] = row['Primary Genre']
+    data_dict['Budget collect'] = row['Budget collect']
+    data_dict['Budget ($million)'] = row['Budget ($million)']
+    data_dict['Worldwide Gross ($million)'] = row['Worldwide Gross ($million)']
+    # Append the dictionary to the list
+    data_list.append(data_dict)
+
+# Close the csv file
+csv_file.close()
+
+# Open a json file and create a json writer object
+json_file = open('data.json', 'w')
+json_writer = json.dumps(data_list, indent=4)
+
+# Write the list to the json file
+json_file.write(json_writer)
+
+# Close the json file
+json_file.close()
