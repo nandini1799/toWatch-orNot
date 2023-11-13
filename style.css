@@ -33,6 +33,7 @@
     border-style: dashed;
     box-sizing: border-box;
     border-radius: 17px;
+<<<<<<< HEAD
     display: flex;
     flex-direction: row;
 }
@@ -57,3 +58,6 @@
     position: absolute;
     
 };
+=======
+}
+>>>>>>> 5dc52e592c7f65177ca3ecf2398dd2f3f7502740
