@@ -1,7 +1,7 @@
 
 
 // Select the svg element and set the width and height
-var svg = d3.select("svg"),
+var svg = d3.select("#chart"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
@@ -115,5 +115,5 @@ d3.csv("average_data.csv", function(error, data) {
       .attr("dy", "0.32em")
       .text(function(d) {
         return d;
-      });
+      }).attr("font-family", "Georgia, 'Times New Roman', Times, serif");
 });

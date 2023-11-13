@@ -73,10 +73,10 @@ countColumnEntriesFromPath(csvFilePath, columnIndex)
                 
                 //const customColors = ["#FF5733", "#345EFF", "#56A8A2", "#FFD733", "#7C36FF", "#E036FF"];
                 // creating the pie chart using the json data created above
-                const width = 500;
-                const height = 400;
+                // const width = 600;
+                // const height = 500;
                 const radius = Math.min(width, height) / 2;
-
+                var margin = {top: 20, right: 20, bottom: 30, left: 40}
                 const colorScale = d3.scaleOrdinal().range(["#FF5733", "#345EFF", "#56A8A2", "#FFD733", "#7C36FF", "#E036FF"])
                     .domain(data.map(d => d.label))
                     .range(d3.schemeCategory10);
@@ -135,13 +135,13 @@ countColumnEntriesFromPath(csvFilePath, columnIndex)
                     .attr("transform", (d, i) => `translate(10, ${i * 20 + 20})`);
 
                 legendItems.append("rect")
-                    .attr("width", 10)
-                    .attr("height", 10)
+                    .attr("width", 20)
+                    .attr("height", 20)
                     .attr("fill", d => colorScale(d.label));
 
                 legendItems.append("text")
                     .attr("x", 20)
-                    .attr("y", 10)
+                    .attr("y", 20)
                     .attr("class", "legend")
                     .text(d => d.label)
                     .text(d => `${d.label} (${((d.value / data.reduce((acc, curr) => acc + curr.value, 0)) * 100).toFixed(2)}%)`)
