@@ -5,11 +5,11 @@ var svg = d3.select("#group")
   .style("width", width)
   .style("height", height)
 
-d3.csv("genre_stats.csv").then(data => {
-  data.forEach(d => {
-    d["Domestic gross ($million)"] = +d["Domestic gross ($million)"];
-    d["Foreign Gross ($million)"] = +d["Foreign Gross ($million)"];
-  });
+  d3.csv("genre_stats.csv", function (data) {
+    data.forEach(function (d) {
+      d["Domestic gross ($million)"] = +d["Domestic gross ($million)"];
+      d["Foreign Gross ($million)"] = +d["Foreign Gross ($million)"];
+    });
 
   const margin = {top: 20, right: 30, bottom: 50, left: 40};
   const width =  600 -margin.left - margin.right;

@@ -71,22 +71,22 @@ countColumnEntriesFromPath(csvFilePath, columnIndex)
 
                 const data = Object.entries(jsonData.distinctOccurrences).map(([label, value]) => ({ label, value }));
                 
-                //const customColors = ["#FF5733", "#345EFF", "#56A8A2", "#FFD733", "#7C36FF", "#E036FF"];
+                
                 // creating the pie chart using the json data created above
-                // const width = 600;
-                // const height = 500;
+                
                 const radius = Math.min(width, height) / 2;
-                var margin = {top: 20, right: 20, bottom: 30, left: 40}
+                var margin = {top: 40, right: 20, bottom: 10, left: 40}
                 const colorScale = d3.scaleOrdinal().range(["#FF5733", "#345EFF", "#56A8A2", "#FFD733", "#7C36FF", "#E036FF"])
-                    .domain(data.map(d => d.label))
-                    .range(d3.schemeCategory10);
+                    .domain(data.map(d => d.label));
+                    // .range(d3.schemeCategory10);
                 
                 const svg = d3.select("#pieChart")
-                    .attr("width", width)
-                    .attr("height", height);
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom);
+                    
 
                 const g = svg.append("g")
-                    .attr("transform", `translate(${width / 2}, ${height / 2})`);
+                .attr("transform", `translate(${width / 2 + margin.left}, ${height / 2 + margin.top})`);
 
                 const pie = d3.pie()
                     .value(d => d.value);
@@ -104,17 +104,7 @@ countColumnEntriesFromPath(csvFilePath, columnIndex)
                     .attr("d", arc)
                     .attr("fill", d => colorScale(d.data.label));
 
-                // Position labels outside the pie chart with a line
-                // arcs.append("text")
-                //     .attr("class", "label-text")
-                //     .attr("transform", d => {
-                //         const centroid = arc.centroid(d);
-                //         const x = centroid[0] * 2;
-                //         const y = centroid[1] * 2;
-                //         return `translate(${x}, ${y})`;
-                //     })
-                //     .attr("dy", "0.35em")
-                //     .text(d => d.data.label);
+               
                 arcs.append("text")
                     .attr("class", "label-text")
                     .attr("transform", d => {
@@ -127,7 +117,8 @@ countColumnEntriesFromPath(csvFilePath, columnIndex)
 
 
                 // Create a legend on the side of the pie chart
-                const legend = d3.select("#legend");
+                const legend = d3.select("#legend")
+                                .attr("transform", `translate(${width + margin.left + margin.right}, ${margin.top})`);
 
                 const legendItems = legend.selectAll("g")
                     .data(data)
@@ -146,6 +137,14 @@ countColumnEntriesFromPath(csvFilePath, columnIndex)
                     .text(d => d.label)
                     .text(d => `${d.label} (${((d.value / data.reduce((acc, curr) => acc + curr.value, 0)) * 100).toFixed(2)}%)`)
                     .attr("font-family", "Georgia, 'Times New Roman', Times, serif");
+                
+                svg.append("text")
+                    .attr("x", 0)
+                    .attr("y", radius + margin.bottom ) // value for the vertical position
+                    .attr("text-anchor", "middle")
+                    .text("Script Distribution")
+                    .attr("font-family", "Georgia, 'Times New Roman', Times, serif")
+                    .attr("font-size", "14px");
                 
             }
         });
