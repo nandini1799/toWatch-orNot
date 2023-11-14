@@ -12,10 +12,10 @@
     width: 98%;
     height: 1200px;
     background-color: #ffffff;
-    border-color: rgba(218, 239, 222, 0.307);
-    border-style: dashed;
+    /* border-color: rgba(218, 239, 222, 0.307); */
+    /* border-style: dashed;
     box-sizing: border-box;
-    border-radius: 17px;
+    border-radius: 17px; */
     margin: 5% auto auto auto;
     display: flex;
     flex-direction: row;
@@ -50,8 +50,8 @@
     fill: #333;
 }
 .description {
-    font-family: Arial, sans-serif;
-    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
     fill: #666;
     text-anchor: middle;
     position: absolute;
