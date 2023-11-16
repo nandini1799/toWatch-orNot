@@ -29,8 +29,8 @@
 
     width: 95%;
     height: 48%;
-    border-color: rgba(111, 146, 117, 0.362);
-    border-style: dashed;
+    /* border-color: rgba(111, 146, 117, 0.362);
+    border-style: dashed; */
     box-sizing: border-box;
     border-radius: 17px;
     display: flex;
