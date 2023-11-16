@@ -1,5 +1,5 @@
-var width = 700
-var height= 500
+// var width = 500
+// var height= 400
 
 var svg = d3.select("#group")
   .style("width", width)

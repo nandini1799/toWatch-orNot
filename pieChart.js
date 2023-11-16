@@ -77,10 +77,10 @@ countColumnEntriesFromPath(csvFilePath, columnIndex)
                 // creating the pie chart using the json data created above
                 // const width = 600;
                 // const height = 400;
-                var margin = {top: 40, right: 20, bottom: 10, left: 10}
+                var margin = {top: 20, right: 20, bottom: 10, left: 10}
                 const radius = Math.min(width, height) / 2;
 
-                const colorScale = d3.scaleOrdinal().range(["#FF5733", "#345EFF", "#56A8A2", "#FFD733", "#7C36FF", "#E036FF"])
+                const colorScale = d3.scaleOrdinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
                     .domain(data.map(d => d.label));
                     // .range(d3.schemeCategory10);
                 
