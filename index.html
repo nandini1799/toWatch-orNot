@@ -1,50 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-    
-    <script src= "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"></script>
-    <title>Reel Insider</title>
-    
-</head>
-<body >
-     
-   
-    <div class="heading">REEL INSIDER : Visualizations Dashboard</div>
-    <!-- <script src="stackedbar.js"></script> -->
-    <!-- <script src="genre_stats.js"></script> -->
-    
-    <div class="visualizationContainer">
-
-        <div class="visualizations"> 
-            <svg id="chart" width="700" height="500"></svg>
-            <script src="segbar.js"></script>
-        </div>
-
-        <div class="visualizations">
-            <svg id="group" width="700" height="500"></svg>
-            <script src="genre_stats.js"></script>
-        </div>
-
-        <div class="visualizations">
-            <svg id="pieChart" width="700" height="500"></svg>
-            <script src="pieChart.js"></script>
-            <!-- <text class="description">Script Distribution</text> -->
-            
-            <svg id="legend"></svg>
-        </div>
-
-        <!-- <div class="visualizations">
-            <svg id="my_dataviz"></svg>
-            <script src="segmentedArea.js"></script>
-        </div> -->
-
-                
-    </div>
-
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ReelInsider</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.jsx"></script>
+	</body>
 </html>
