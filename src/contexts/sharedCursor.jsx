@@ -4,40 +4,27 @@ const initialState = {
 	changeTab: () => {},
 	selectedLegend: "",
 	changeSelectedLegend: () => {},
-	sharedCursor: "",
-	setSharedCursorPosition: () => {},
 };
-const TabContext = createContext({ ...initialState });
+const CursorContext = createContext({ ...initialState });
 
 const TabContextProvider = ({ children }) => {
 	const [currentTab, setCurrentTab] = useState(initialState.currentTab);
 	const [selectedLegend, setSelectedLegend] = useState("");
-	const [sharedCursor, setSharedCursor] = useState(null);
 	const changeSelectedLegend = (value) => {
 		setSelectedLegend(value);
 	};
-	const setSharedCursorPosition = (position) => {
-		setSharedCursor(position);
-	};
 	const changeTab = (value) => setCurrentTab(value);
 	return (
-		<TabContext.Provider
-			value={{
-				currentTab,
-				changeTab,
-				selectedLegend,
-				changeSelectedLegend,
-				sharedCursor,
-				setSharedCursorPosition,
-			}}
+		<CursorContext.Provider
+			value={{ currentTab, changeTab, selectedLegend, changeSelectedLegend }}
 		>
 			{children}
-		</TabContext.Provider>
+		</CursorContext.Provider>
 	);
 };
 
-export const useTab = () => {
-	const context = useContext(TabContext);
+export const useCursor = () => {
+	const context = useContext(CursorContext);
 
 	if (!context) throw new Error("please wrap in tabProvider");
 

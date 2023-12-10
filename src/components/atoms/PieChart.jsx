@@ -4,13 +4,15 @@ import { useMovies } from "../../contexts/MoviesContext";
 import { mainColors, themeColors } from "../../utils/theme";
 import clsx from "clsx";
 
-const colors = [...Object.values(mainColors), themeColors["gray-text"]];
+const colors = [
+	...Object.values(mainColors).filter((e, i) => i < 4),
+	themeColors["gray-text"],
+];
 
 export const PieChart = ({ width, height, margin, infPadding = 0 }) => {
 	const { byScriptType: data } = useMovies();
 	const radius = Math.min(width, height) / 2 - margin;
-	// const ref = useRef();
-	const [isHighlightedIndex, setIsHighlightedIndex] = useState(0);
+
 	const pie = useMemo(() => {
 		const pieGenerator = d3.pie().value((d) => d.value);
 		return pieGenerator(data);
@@ -37,20 +39,12 @@ export const PieChart = ({ width, height, margin, infPadding = 0 }) => {
 			const inflexionPoint = arcPathGenerator.centroid(inflexionInfo);
 
 			const isRightLabel = inflexionPoint[0] > 0;
-			const labelPosX = inflexionPoint[0] + 50 * (isRightLabel ? 1 : -1);
+			const labelPosX = inflexionPoint[0] + 25 * (isRightLabel ? 1 : -3);
 			const textAnchor = isRightLabel ? "start" : "end";
 			const label = p.data.label + " (" + p.value + ")";
 
 			return (
-				<g
-					key={i}
-					onMouseEnter={() => {
-						setIsHighlightedIndex(i);
-					}}
-					onMouseLeave={() => {
-						setIsHighlightedIndex(undefined);
-					}}
-				>
+				<g key={i}>
 					<path d={slicePath} fill={colors[i]} />
 					<circle
 						fill={themeColors.black}
@@ -74,16 +68,21 @@ export const PieChart = ({ width, height, margin, infPadding = 0 }) => {
 						stroke={colors[i]}
 						fill={colors[i]}
 					/>
-					<text
-						x={labelPosX + (isRightLabel ? 2 : -2)}
-						y={inflexionPoint[1]}
-						textAnchor={textAnchor}
-						dominantBaseline='middle'
-						fill={colors[i]}
-						fontSize={14}
-					>
-						{label}
-					</text>
+					<g x={labelPosX + (isRightLabel ? 2 : -2)} y={inflexionPoint[1]}>
+						{label.split(" ").map((l, j) => (
+							<text
+								x={labelPosX + (isRightLabel ? 2 : -2)}
+								y={inflexionPoint[1] + j * 20}
+								key={l}
+								textAnchor={textAnchor}
+								dominantBaseline='middle'
+								fill={colors[i]}
+								className='text-sm'
+							>
+								{l}
+							</text>
+						))}
+					</g>
 				</g>
 			);
 		});

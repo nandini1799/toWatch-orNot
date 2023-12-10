@@ -30,6 +30,13 @@ export default {
 						opacity: 0,
 					},
 				},
+				drop: {
+					"0%": { transform: "translateY(-20px)", opacity: 0 },
+					"100%": {
+						transform: "translateY(0)",
+						opacity: 1,
+					},
+				},
 				colorShift: {
 					"0%": { color: mainColors["red-main"] },
 					"20%": { color: mainColors["orange-main"] },
@@ -86,6 +93,7 @@ export default {
 				rotate: "rotate 10s linear infinite forwards",
 				zoom: "zoom 2s linear 1 forwards",
 				colorShift: "colorShift 45s ease-in-out infinite alternate",
+				drop: "drop 0.3s ease-in-out 1 alternate",
 			},
 		},
 	},

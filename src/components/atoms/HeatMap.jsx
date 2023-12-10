@@ -35,7 +35,6 @@ export const Heatmap = ({ width, height, margin }) => {
 		return (
 			<rect
 				onClick={() => {
-					console.log(+d.x);
 					setSelectedYear(+d.x);
 				}}
 				className='cursor-pointer'

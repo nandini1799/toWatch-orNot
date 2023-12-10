@@ -4,14 +4,21 @@ import { useMovies } from "../../contexts/MoviesContext";
 import { useGraphInteractivity } from "../../contexts/InteractivityContext";
 import moment from "moment";
 import { transformMoviesForYearWiseChart } from "../../utils/d3-transformer";
-import { mainColors, themeColors } from "../../utils/theme";
+import {
+	mainColors,
+	themeBasedOnSelector,
+	themeColors,
+} from "../../utils/theme";
 import clsx from "clsx";
-import { MONTHS, YEARS } from "../../utils/constants";
+import { MONTHS } from "../../utils/constants";
 import MovieCard from "../atoms/MovieCard";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import { useTab } from "../../contexts/TabContext";
 
 const ZoomChartOverlay = ({ margin, width, height, closeDetailedView }) => {
 	const boundsWidth = width - margin.right - margin.left;
 	const boundsHeight = height - margin.top - margin.bottom;
+	const { currentTab } = useTab();
 
 	const { movies } = useMovies();
 	const { selectedYear, setSelectedYear } = useGraphInteractivity();
@@ -59,7 +66,6 @@ const ZoomChartOverlay = ({ margin, width, height, closeDetailedView }) => {
 			<g
 				key={i}
 				onClick={() => {
-					console.log(d.releaseDate);
 					setSelectedMovieReleaseDate(d.releaseDate);
 				}}
 				className='cursor-pointer'
@@ -155,26 +161,26 @@ const ZoomChartOverlay = ({ margin, width, height, closeDetailedView }) => {
 				className='fixed top-0 left-0 z-50 w-screen h-screen backdrop-blur-sm'
 				onClick={closeDetailedView}
 			/>
-			<div className='fixed top-[50%] left-[50%] z-50 w-[1600px] h-[800px] translate-x-[-50%] translate-y-[-50%] bg-black/80 backdrop-blur-xl rounded-2xl border-[1px] shadow-[0_0_10px_1px_rgba(255,255,255,0.03)] border-white/10 flex flex-col text-white justify-start items-stretch py-10 px-7 gap-8'>
+			<div className='fixed top-[50%] left-[50%] z-50 w-[85vw] h-[85vh] translate-x-[-50%] translate-y-[-50%] bg-black/80 backdrop-blur-xl rounded-2xl border-[1px] shadow-[0_0_10px_1px_rgba(255,255,255,0.03)] border-white/10 flex flex-col text-white justify-start items-stretch py-10 px-7 gap-8'>
 				<div className='relative flex items-center justify-center text-3xl font-bold text-center font-bebas'>
 					{selectedYear > 2007 ? (
-						<div
-							className='cursor-pointer absolute top-[50%] translate-y-[-50%] left-0'
+						<FaAngleLeft
+							color={themeColors.white}
+							size={28}
+							className='cursor-pointer box-content p-2 transition-all duration-300 rounded-full hover:bg-white/10 active:bg-white/30 absolute top-[50%] translate-y-[-50%] left-0'
 							onClick={prevYearMovies}
-						>
-							⬅️
-						</div>
+						/>
 					) : (
 						<></>
 					)}
 					{selectedYear} Movie&apos;s Release Date vs IMDB
 					{selectedYear < 2022 ? (
-						<div
-							className='cursor-pointer absolute top-[50%] translate-y-[-50%] right-0'
+						<FaAngleRight
+							color={themeColors.white}
+							size={28}
+							className='cursor-pointer box-content p-2 transition-all duration-300 rounded-full active:bg-white/30 hover:bg-white/10 absolute top-[50%] translate-y-[-50%] right-0'
 							onClick={nextYearMovies}
-						>
-							➡️
-						</div>
+						/>
 					) : (
 						<></>
 					)}

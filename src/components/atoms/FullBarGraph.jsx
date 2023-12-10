@@ -40,7 +40,6 @@ const FullBarGraph = ({ width, height, margin, openDetailedView }) => {
 		return (
 			<g
 				onClick={() => {
-					console.log(d);
 					setSelectedYear(d.year);
 				}}
 				onDoubleClick={() => {

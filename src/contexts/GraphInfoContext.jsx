@@ -8,8 +8,8 @@ const initState = {
 		showGroupBarChartInfo: false,
 		showStackedBarChartInfo: false,
 		showHeatMapChartInfo: false,
-		showSpiderWebChart1Info: false,
-		showSpiderWebChart2Info: false,
+		showGenreShiftChartInfo: false,
+		showRuntimeShiftChartInfo: false,
 	},
 };
 
@@ -47,8 +47,8 @@ export const toggleInfoStateKeys = {
 	showGroupBarChartInfo: "showGroupBarChartInfo",
 	showStackedBarChartInfo: "showStackedBarChartInfo",
 	showHeatMapChartInfo: "showHeatMapChartInfo",
-	showSpiderWebChart1Info: "showSpiderWebChart1Info",
-	showSpiderWebChart2Info: "showSpiderWebChart2Info",
+	showGenreShiftChartInfo: "showGenreShiftChartInfo",
+	showRuntimeShiftChartInfo: "showRuntimeShiftChartInfo",
 };
 
 export default GraphInfoContextProvider;

@@ -31,7 +31,7 @@ export const transformImdbHeatMapData = (data) => {
 	return newData;
 };
 
-export const transformShiftDataChange = (data, isRuntimeShift) => {
+export const shiftDataChange = (data, isRuntimeShift) => {
 	let newData = [];
 	GENRE.forEach((g) => {
 		let genreObject = {};
@@ -41,13 +41,30 @@ export const transformShiftDataChange = (data, isRuntimeShift) => {
 				name: g,
 				[y]:
 					isRuntimeShift && data[y][g]
-						? data[y][g].totalRuntime / data[y][g].totalMovies ?? 0
+						? data[y][g].totalRuntime / data[y][g].totalMovies ?? 100
 						: data[y][g] ?? 0,
 			};
 		});
 		newData.push({ ...genreObject });
 	});
 	return newData;
+};
+
+export const transformShiftDataChange = (data, isRuntimeShift) => {
+	let pointCoordinate = [];
+	GENRE.forEach((g) => {
+		Object.keys(data).forEach((k) => {
+			pointCoordinate.push({
+				x: +k,
+				y:
+					isRuntimeShift && data[k][g]
+						? data[k][g].totalRuntime / data[k][g].totalMovies ?? 0
+						: data[k][g] ?? 0,
+				g,
+			});
+		});
+	});
+	return pointCoordinate;
 };
 
 export const transformMoviesForYearWiseChart = (data) => {
@@ -61,4 +78,29 @@ export const transformMoviesForYearWiseChart = (data) => {
 		genres: e.Genres,
 		availableHere: e.Link,
 	}));
+};
+
+export const transformPieChartDataToShowGivenColorsOnly = (
+	data,
+	numberOfColors
+) => {
+	const mainVisibleData = data
+		.sort((a, b) => b.value - a.value)
+		.filter((e, i) => i < numberOfColors)
+		.map((e) => {
+			return e.id === "based on a true story"
+				? { ...e, id: "true story", label: "true story" }
+				: { ...e };
+		});
+
+	const others = data
+		.filter((e, i) => i >= numberOfColors)
+		.reduce(
+			(acc, curr) => {
+				return { id: "others", label: "others", value: acc.value + curr.value };
+			},
+			{ id: "others", label: "others", value: 0 }
+		);
+
+	return [...mainVisibleData, others];
 };

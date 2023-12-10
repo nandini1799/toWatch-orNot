@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { useMovies } from "../../contexts/MoviesContext";
 import { transformMoviesForYearWiseChart } from "../../utils/d3-transformer";
 import clsx from "clsx";
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
+import { themeBasedOnSelector, themeColors } from "../../utils/theme";
+import { useTab } from "../../contexts/TabContext";
+import { IoClose } from "react-icons/io5";
 
 const MovieCard = ({ releaseDate, clearReleaseDate }) => {
 	const { movies } = useMovies();
+	const { currentTab } = useTab();
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [onCard, setOnCard] = useState(false);
 	const moviesForTheDate = React.useMemo(
@@ -41,15 +46,31 @@ const MovieCard = ({ releaseDate, clearReleaseDate }) => {
 			}}
 		>
 			<div className='relative flex items-center justify-between px-3 py-4 rounded-t-lg bg-gradient-to-b from-black to-transparent'>
-				<p className='w-[10%] cursor-pointer' onClick={prevMovie}>
-					{currentIndex > 0 ? "⬅️" : ""}
+				<p className='max-w-[10%]  cursor-pointer' onClick={prevMovie}>
+					{currentIndex > 0 ? (
+						<FaAngleLeft
+							className='box-content p-1 duration-300 rounded-full p-1transition-all active:bg-white/50 hover:bg-white/30'
+							color={themeColors.white}
+							size={14}
+						/>
+					) : (
+						<></>
+					)}
 				</p>
 				<p className='text-sm text-center grow'>
 					{releaseDate} {"  "}{" "}
 					{`(${currentIndex + 1}/${moviesForTheDate.length})`}
 				</p>
-				<p className='w-[10%] cursor-pointer' onClick={nextMovie}>
-					{currentIndex < moviesForTheDate.length - 1 ? "➡️" : ""}
+				<p className='max-w-[10%] cursor-pointer' onClick={nextMovie}>
+					{currentIndex < moviesForTheDate.length - 1 ? (
+						<FaAngleRight
+							className='box-content p-1 transition-all duration-300 rounded-full active:bg-white/50 hover:bg-white/30'
+							color={themeColors.white}
+							size={14}
+						/>
+					) : (
+						<></>
+					)}
 				</p>
 			</div>
 			<div className='flex flex-col gap-5 px-3 py-4 rounded-b-lg bg-gradient-to-b from-black/5 via-black/80 to-black'>
@@ -57,18 +78,20 @@ const MovieCard = ({ releaseDate, clearReleaseDate }) => {
 					{moviesForTheDate[currentIndex].name}
 				</p>
 				<div className='flex justify-between text-sm'>
-					<p className='font-semibold'>
-						<span className='text-xs font-normal'>Director:</span>{" "}
+					<p className='font-normal'>
+						<span className='text-xs font-normal text-gray-text'>
+							Director:
+						</span>{" "}
 						{moviesForTheDate[currentIndex].director}
 					</p>
-					<p className='font-semibold'>
-						<span className='text-xs font-normal'>imdb:</span>{" "}
+					<p className='font-normal min-w-[55px]'>
+						<span className='text-xs font-normal text-gray-text'>imdb:</span>{" "}
 						{moviesForTheDate[currentIndex].imdb}
 					</p>
 				</div>
 				<div className='flex items-center justify-between text-sm'>
-					<p className='font-semibold'>
-						<span className='text-xs font-normal'>Genres:</span>{" "}
+					<p className='font-normal'>
+						<span className='text-xs font-normal text-gray-text'>Genres:</span>{" "}
 						{moviesForTheDate[currentIndex].genres}
 					</p>
 					{!!moviesForTheDate[currentIndex].availableHere && (
@@ -93,14 +116,14 @@ const MovieCard = ({ releaseDate, clearReleaseDate }) => {
 				className={clsx(
 					onCard
 						? "translate-y-[-80%] bg-red-main"
-						: "translate-y-[-20%] bg-gray-text",
+						: "translate-y-[-20%] bg-red-main/50",
 					"absolute cursor-pointer z-[-50] top-[0%] left-[0%] w-[40px] h-[40px] transition-all duration-300 translate-x-[30%]  flex justify-center items-center  rounded-full"
 				)}
 				onClick={() => {
 					clearReleaseDate();
 				}}
 			>
-				✖️
+				<IoClose size={24} color={themeColors.white} />
 			</div>
 		</div>
 	) : (

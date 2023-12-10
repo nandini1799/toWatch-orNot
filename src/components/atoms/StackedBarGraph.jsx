@@ -2,20 +2,8 @@ import { useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
 import { useMovies } from "../../contexts/MoviesContext";
 import { mainColors, themeColors } from "../../utils/theme";
-
-// const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
-
-// type Group = {
-//   x: string;
-// } & { [key: string]: number };
-
-// type StackedBarplotProps = {
-//   width: number;
-//   height: number;
-//   data: Group[];
-// };
 const colors = {
-	openingWeekend: mainColors["blue-main"],
+	openingWeekend: mainColors["red-main"],
 	worldwideGross: mainColors["orange-main"],
 };
 
@@ -109,7 +97,9 @@ export const StackedBarGraph = ({
 							width={xScale.bandwidth()}
 							fill={colors[subgroup.key]}
 							opacity={1}
-						></rect>
+						>
+							<title>{group.data.label}</title>
+						</rect>
 					);
 				})}
 			</g>

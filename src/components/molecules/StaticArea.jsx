@@ -4,12 +4,18 @@ import Loader from "../atoms/Loader/Loader";
 import SelectorChart from "./SelectorChart";
 import ZoomChartOverlay from "./ZoomChartOverlay";
 import { useState } from "react";
+import clsx from "clsx";
+import { graphInfo } from "../../utils/graphInfo";
 
 const StaticArea = () => {
 	const { isLoading } = useMovies();
 	const [showDetailedView, setShowDetailedView] = useState(false);
 	return (
-		<div className='relative flex flex-col items-center justify-start w-full h-full pt-4'>
+		<div
+			className={clsx(
+				"relative flex flex-col items-center justify-start w-full h-full pt-4 "
+			)}
+		>
 			{isLoading && (
 				<div className='absolute z-30 flex items-center justify-center w-full h-full bg-black/5 backdrop-blur-sm'>
 					<Loader />
@@ -17,9 +23,9 @@ const StaticArea = () => {
 			)}
 			{showDetailedView && (
 				<ZoomChartOverlay
-					width={1500}
-					height={700}
-					margin={{ top: 30, left: 30, right: 30, bottom: 30 }}
+					width={graphInfo.zoomOverlayChart.dimensions.width}
+					height={graphInfo.zoomOverlayChart.dimensions.height}
+					margin={graphInfo.zoomOverlayChart.dimensions.margin}
 					closeDetailedView={() => {
 						setShowDetailedView(false);
 					}}

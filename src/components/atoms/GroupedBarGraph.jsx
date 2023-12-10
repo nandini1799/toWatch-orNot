@@ -3,7 +3,14 @@ import * as d3 from "d3";
 import { clipText } from "../../utils/helperFuntions";
 import { useMovies } from "../../contexts/MoviesContext";
 import { mainColors, themeColors } from "../../utils/theme";
-
+import { GENRE } from "../../utils/constants";
+const colors = {
+	comedy: mainColors["blue-main"],
+	action: mainColors["green-main"],
+	adventure: mainColors["yellow-main"],
+	romance: mainColors["purple-main"],
+	drama: mainColors["pink-main"],
+};
 const BAR_PADDING = 0.3;
 
 // type BarplotProps = {
@@ -17,7 +24,10 @@ export const GroupedBarGraph = ({ width, height, margin, xAxisLabel }) => {
 	const { byRevenueType: data } = useMovies();
 	const boundsWidth = width - margin.right - margin.left;
 	const boundsHeight = height - margin.top - margin.bottom;
-	const transformedKey = useMemo(() => Object.keys(data).slice(0, 7), [data]);
+	const transformedKey = useMemo(
+		() => Object.keys(data).filter((e) => GENRE.includes(e)),
+		[data]
+	);
 	// Y axis is for groups since the barplot is horizontal
 	const groups = transformedKey;
 	const yScale = useMemo(() => {
@@ -66,32 +76,36 @@ export const GroupedBarGraph = ({ width, height, margin, xAxisLabel }) => {
 					width={xScale(data[d].domestic)}
 					height={yScale.bandwidth() / 2 - 2}
 					opacity={0.9}
-					stroke={mainColors["purple-main"]}
-					fill={mainColors["purple-main"]}
+					stroke={mainColors["orange-main"]}
+					fill={mainColors["orange-main"]}
 					fillOpacity={0.4}
 					strokeWidth={1}
 					rx={1}
-				/>
+				>
+					<title>{data[d].domestic}</title>
+				</rect>
 				<rect
 					x={xScale(0)}
 					y={yScale(d) + yScale.bandwidth() / 2 + 2}
 					width={xScale(data[d].international)}
 					height={yScale.bandwidth() / 2 - 2}
 					opacity={0.9}
-					stroke={mainColors["green-main"]}
-					fill={mainColors["green-main"]}
+					stroke={mainColors["red-main"]}
+					fill={mainColors["red-main"]}
 					fillOpacity={0.4}
 					strokeWidth={1}
 					rx={1}
-				/>
+				>
+					<title>{data[d].international}</title>
+				</rect>
 
 				<text
 					x={-70}
+					className='text-sm capitalize'
 					y={y + yScale.bandwidth() / 2 + 4}
 					textAnchor='start'
 					alignmentBaseline='central'
-					fontSize={12}
-					fill='#ffffff'
+					fill={colors[d]}
 				>
 					{clipText(d, 10)}
 				</text>

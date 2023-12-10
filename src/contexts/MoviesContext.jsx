@@ -1,8 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getAPI } from "../utils/axiosHelper";
 import {
+	shiftDataChange,
 	transformByAudienceTypeData,
 	transformImdbHeatMapData,
+	transformPieChartDataToShowGivenColorsOnly,
 	transformShiftDataChange,
 	transformTop10MoviesByRevenueTypeData,
 } from "../utils/d3-transformer";
@@ -45,7 +47,12 @@ const MoviesContextProvider = ({ children }) => {
 						return transformByAudienceTypeData(data.byAudienceType);
 					});
 					setByRevenueType(data.byRevenueType);
-					setByScriptType(data.byScriptType);
+					setByScriptType(() => {
+						return transformPieChartDataToShowGivenColorsOnly(
+							data.byScriptType,
+							4
+						);
+					});
 					setTop10WorldWideGross(() => {
 						return transformTop10MoviesByRevenueTypeData(
 							data.top10WorldWideGross
@@ -67,6 +74,7 @@ const MoviesContextProvider = ({ children }) => {
 				const { isError, data } = await getAPI(`/movies/`);
 				if (isError) throw new Error("getting grouped Api failed.");
 				if (data) {
+					console.log(shiftDataChange(data.genreShift));
 					setImdbHeatMap(() => transformImdbHeatMapData(data.heatMapIMDB));
 					setGenreShift(() => transformShiftDataChange(data.genreShift));
 					setRuntimeShift(() =>
