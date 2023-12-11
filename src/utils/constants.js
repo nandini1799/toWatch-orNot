@@ -46,7 +46,7 @@ export const LINKS = [
 	{
 		id: "be-reelinsider",
 		label: "Backend-ReelInsider",
-		link: "https://github.com/fuck-eer/moviedash-back",
+		link: "https://github.com/nandini1799/toWatch-orNot/tree/main/backend",
 		icon: "api",
 	},
 	{
