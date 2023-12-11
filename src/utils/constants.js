@@ -40,7 +40,7 @@ export const LINKS = [
 	{
 		id: "fe-reelinsider",
 		label: "Frontend-ReelInsider",
-		link: "https://github.com/fuck-eer/moviedash",
+		link: "https://github.com/nandini1799/toWatch-orNot",
 		icon: "github",
 	},
 	{
